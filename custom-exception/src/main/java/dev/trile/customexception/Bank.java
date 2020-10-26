@@ -12,6 +12,6 @@ public interface Bank {
       throw new SalaryException(TRANSFER_MONEY_PARAMS_INVALID, "AccountNo null or empty");
 
     if (amount <= 0)
-      throw new SalaryException(TRANSFER_MONEY_PARAMS_INVALID, "Amount less than 0");
+      throw new SalaryException(TRANSFER_MONEY_PARAMS_INVALID, "Amount less than or equal zero");
   }
 }
