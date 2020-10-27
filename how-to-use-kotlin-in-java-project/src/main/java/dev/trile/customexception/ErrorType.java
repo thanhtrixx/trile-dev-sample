@@ -1,0 +1,8 @@
+package dev.trile.customexception;
+
+public enum ErrorType {
+  UNKNOWN_ERROR,
+  CALC_SALARY_PARAMS_INVALID,
+  TRANSFER_MONEY_PARAMS_INVALID,
+  TRANSFER_MONEY_NOT_ENOUGH_MONEY,
+}
