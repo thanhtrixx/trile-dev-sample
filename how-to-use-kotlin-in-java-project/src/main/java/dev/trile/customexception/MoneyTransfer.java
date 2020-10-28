@@ -4,7 +4,8 @@ import static dev.trile.customexception.ErrorType.TRANSFER_MONEY_NOT_ENOUGH_MONE
 
 public class MoneyTransfer {
 
-  private final Bank vietcomBank = new VietcomBank();
+  //  private final Bank vietcomBank = new VietcomBank();
+  private final Bank vietcomBank = new dev.trile.java2kotlin.VietcomBank();
 
   private final Bank vietinBank = new VietinBank();
 
