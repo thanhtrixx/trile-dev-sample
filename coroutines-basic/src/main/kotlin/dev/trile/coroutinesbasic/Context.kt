@@ -15,11 +15,11 @@ fun main() = runBlocking<Unit> {
   println("Job in current context is: ${coroutineContext[Job]}")
 
   println("Dispatcher in current context is: ${coroutineContext[ContinuationInterceptor]}")
-  
+
   launch(CoroutineName("child")) {
     println("Child context is $coroutineContext}")
 
-    println("CoroutineName in current context is: ${coroutineContext[CoroutineName.Key]}")
+    println("CoroutineName in current context is: ${coroutineContext[CoroutineName]}")
   }
 
 }
