@@ -1,4 +1,4 @@
-package dev.trile.coroutinesbasic
+package dev.trile.coroutines.basic
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
