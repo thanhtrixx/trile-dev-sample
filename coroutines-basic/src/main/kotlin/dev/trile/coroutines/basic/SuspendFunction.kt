@@ -1,4 +1,4 @@
-package dev.trile.coroutinesbasic
+package dev.trile.coroutines.basic
 
 import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
