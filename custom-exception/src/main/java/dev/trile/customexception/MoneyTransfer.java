@@ -4,15 +4,15 @@ import static dev.trile.customexception.ErrorType.TRANSFER_MONEY_NOT_ENOUGH_MONE
 
 public class MoneyTransfer {
 
-  private final Bank vietcomBank = new VietcomBank();
+  private final Bank primaryBank = new VietcomBank();
 
-  private final Bank vietinBank = new VietinBank();
+  private final Bank secondaryBank = new VietinBank();
 
   public void transferMoney(String accountNo, int amount) throws SalaryException {
     System.out.println("Transfer " + amount + " to " + accountNo);
 
     try {
-      vietcomBank.transferMoney(accountNo, amount);
+      primaryBank.transferMoney(accountNo, amount);
     } catch (SalaryException e) {
       System.out.println(e.getMessage());
 
@@ -21,7 +21,7 @@ public class MoneyTransfer {
 
       System.out.println("Retry with VTB");
       // try with VietinBank
-      vietinBank.transferMoney(accountNo, amount);
+      secondaryBank.transferMoney(accountNo, amount);
     }
   }
 }
