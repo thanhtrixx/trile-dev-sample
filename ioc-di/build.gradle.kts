@@ -27,7 +27,6 @@ configurations {
     exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
     exclude(group = "org.springframework", module = "spring-web")
     exclude(group = "org.springframework", module = "spring-webmvc")
-    exclude(group = "org.springframework", module = "spring-webmvc")
   }
 }
 

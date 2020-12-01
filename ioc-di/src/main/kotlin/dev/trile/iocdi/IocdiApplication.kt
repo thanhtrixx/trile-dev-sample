@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean
 class IocdiApplication {
 
   @Bean
-  fun primaryBank() = VietcomBank()
+  fun primaryBank() = VietinBank()
 
   @Bean
-  fun secondaryBank() = VietinBank()
+  fun secondaryBank() = VietcomBank()
 
 }
 
