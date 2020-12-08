@@ -3,6 +3,7 @@ package dev.trile.mock.customer
 import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -21,19 +22,25 @@ internal class CustomerServiceTest {
 
   @Test
   fun `test getFullNameCustomerWithTotalBuyPriceGreaterThan return empty`() {
+    val totalBuyPrice = 3_000
+
     every {
-      customerRepository
-        .findByTotalBuyPriceGreaterThan(any())
+      customerRepository.findByTotalBuyPriceGreaterThan(totalBuyPrice)
     } returns emptyList()
 
-    assertTrue(customerService.getFullNameCustomerWithTotalBuyPriceGreaterThan(3_000).isEmpty())
+    assertTrue(
+      customerService.getFullNameCustomerWithTotalBuyPriceGreaterThan(totalBuyPrice).isEmpty()
+    )
+
+    verify(exactly = 1) { customerRepository.findByTotalBuyPriceGreaterThan(totalBuyPrice) }
   }
 
   @Test
   fun `test getFullNameCustomerWithTotalBuyPriceGreaterThan return one customer`() {
+    val totalBuyPrice = 3_000
+
     every {
-      customerRepository
-        .findByTotalBuyPriceGreaterThan(any())
+      customerRepository.findByTotalBuyPriceGreaterThan(3_000)
     } returns listOf(
       Customer(firstName = "Tri", lastName = "Le")
     )
@@ -42,13 +49,17 @@ internal class CustomerServiceTest {
       listOf("Tri Le"),
       customerService.getFullNameCustomerWithTotalBuyPriceGreaterThan(3_000)
     )
+
+    verify(exactly = 1) { customerRepository.findByTotalBuyPriceGreaterThan(totalBuyPrice) }
+
   }
 
   @Test
   fun `test getFullNameCustomerWithTotalBuyPriceGreaterThan return two customer`() {
+    val totalBuyPrice = 3_000
+
     every {
-      customerRepository
-        .findByTotalBuyPriceGreaterThan(any())
+      customerRepository.findByTotalBuyPriceGreaterThan(3_000)
     } returns listOf(
       Customer(firstName = "Tri", lastName = "Le"),
       Customer(firstName = "Anna", lastName = "Wesley"),
@@ -58,5 +69,8 @@ internal class CustomerServiceTest {
       listOf("Tri Le", "Anna Wesley"),
       customerService.getFullNameCustomerWithTotalBuyPriceGreaterThan(3_000)
     )
+
+    verify(exactly = 1) { customerRepository.findByTotalBuyPriceGreaterThan(totalBuyPrice) }
+
   }
 }
