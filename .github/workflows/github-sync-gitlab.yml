@@ -1,18 +1,19 @@
 name: GitHub sync GitLab
-on: [push, delete]
+
+on:
+  - push
+  - delete
+
 jobs:
-  github-sync-gitlab:
+  sync:
     runs-on: ubuntu-latest
+    name: Git Repo Sync
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - uses: wangchucheng/git-repo-sync@v0.1.0
         with:
-          target-url: "https://gitlab.com/thanhtrixx/trile-dev-sample"
+          target-url: "https://gitlab.com/thanhtrixx/trile-dev-sample.git"
           target-username: ${{ secrets.TARGET_USERNAME }}
           target-token: ${{ secrets.TARGET_TOKEN }}
