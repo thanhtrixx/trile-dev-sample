@@ -6,10 +6,12 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.ArgumentsProvider
+import org.junit.jupiter.params.provider.ArgumentsSource
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
@@ -74,4 +76,25 @@ internal class CustomerServiceTest {
     verify(exactly = 1) { customerRepository.findByTotalBuyPriceGreaterThan(totalBuyPrice) }
 
   }
+
+
+  @ParameterizedTest
+  @ArgumentsSource(MyArgumentsProvider::class)
+  fun testWithArgumentsSource(argument: String?) {
+    assertNotNull(argument)
+  }
+
+
 }
+
+class MyArgumentsProvider : ArgumentsProvider {
+  override fun provideArguments(context: ExtensionContext): Stream<out Arguments> {
+    return Stream.of("apple", "banana").map { arguments: String? ->
+      Arguments.of(
+        arguments
+      )
+    }
+  }
+}
+
+
